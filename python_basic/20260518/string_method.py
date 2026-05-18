@@ -41,9 +41,15 @@ newdata = ",".join(listdata1)   #⭐
 print(newdata)
 
 listdata4 = "python#test ai programming, study"
-ref1 = listdata4.replace('#', ' ')
-ref2 = ref1.replace(',', '').split(' ')
-print(ref2)
+ref1 = listdata4.replace('#', ' ').replace(',', '').split(' ')
+print(ref1)
+
+# 정규표현식
+import re
+listdata4 = "python#test ai programming, study"
+result = re.sub(r'[#,]',' ',listdata4)  #⭐정규표현 복습!
+print(result)
+
 
 
 
