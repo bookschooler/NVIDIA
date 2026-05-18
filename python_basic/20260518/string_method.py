@@ -55,10 +55,6 @@ print(list_exam, type(list_exam))
 list_exam.append()
 list_exam.extend()
 
-str_exam = "try your best"
-str_exam.split()
-
-
-
-
+data = { }  # 딕셔너리 객체 생성
+data1 = ( )  # 튜플 객체 생성
 
