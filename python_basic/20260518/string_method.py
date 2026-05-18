@@ -50,6 +50,15 @@ listdata4 = "python#test ai programming, study"
 result = re.sub(r'[#,]',' ',listdata4)  #⭐정규표현 복습!
 print(result)
 
+list_exam = []
+print(list_exam, type(list_exam))
+list_exam.append()
+list_exam.extend()
+
+str_exam = "try your best"
+str_exam.split()
+
+
 
 
 
