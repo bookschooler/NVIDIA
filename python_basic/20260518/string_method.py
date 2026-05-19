@@ -52,9 +52,9 @@ print(result)
 
 list_exam = []
 print(list_exam, type(list_exam))
-list_exam.append()
-list_exam.extend()
 
 data = { }  # 딕셔너리 객체 생성
 data1 = ( )  # 튜플 객체 생성
+
+print( list("abcdef"))
 
