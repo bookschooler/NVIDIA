@@ -55,7 +55,8 @@ except requests.exceptions.HTTPError as e:
 
     print(newtitlesoup[i].text)
 #soup.find_all은 태그 정보를 찾아주는 메소드
+#
+# newtitlesoup = soup.find_all(class_ = 'subscriber_cnt') #리스트로 반환
+# for item in newtitlesoup[1:]:
+#     print(item.text)
 
-newtitlesoup = soup.find_all(class_ = 'subscriber_cnt') #리스트로 반환
-for item in newtitlesoup[1:]:
-    print(item.text)
