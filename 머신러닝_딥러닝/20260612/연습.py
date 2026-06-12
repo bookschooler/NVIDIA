@@ -3,8 +3,6 @@ import numpy as np
 
 fruit = ['사과', '바나나', '포도', '딸기']
 
-print(fruit.shape)
-
 # print(fruit[0:1]) 
 # print(fruit[[0,2]]) # 에러 남 => 리스트의 [  ]  <= 여기 안에는 정수 아니면 1:3 이런 형태만 올 수 있음. 
 
