@@ -67,7 +67,7 @@ model.add( MaxPooling2D (2) )   # 2x2 필터가 2 스트라이드 이동하면�
 model.add( Flatten() )
 
 # FC layer 층 추가하기
-model.add (Dense ( 100, activation='relu') )
+model.add (Dense ( units = 100, activation='relu') )
 
 # 과대적합 방지하기 위해 Dropout 추가
 model.add( Dropout(0.4) ) # 학습된 가중치가 없음    #⭐여기서도 학습을 하는건가? 학습을 안하면 과대적합이 될 일이 없어서 dropout 안해도 될텐데 왜 dropout을 쓰는거지? 
@@ -93,7 +93,9 @@ earlystop_cb = EarlyStopping(monitor = 'val_loss', patience=3, restore_best_weig
  
 
 # 모델 학습
-best = model.fit(train_x, train_y, batch_size = 64, epochs=100, verbose=1,   # ⭐ 이 best버전 모델 저장하려면 history로 저장시켜서 나중에 써먹기⭐
-          validation_data = (val_x, val_y), callbacks = (checkpointer_cb, earlystop_cb))
+ref = model.fit(train_x, train_y, batch_size = 64, epochs=100, verbose=1,   
+        validation_data = (val_x, val_y), callbacks = (checkpointer_cb, earlystop_cb))
 
-best.history(['loss'])
+# ⭐ 이거 변수에 저장하는 건 나중에 시각화 할 때 써먹을라고 하는 거임
+
+

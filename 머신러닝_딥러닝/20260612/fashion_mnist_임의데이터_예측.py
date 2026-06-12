@@ -48,9 +48,11 @@ print(pred)
 
 classes = ['티셔츠', '바지', '스웨터', '드레스', '코트', '샌달', '셔츠', '스니커즈', '가방', '앵클부츠']
 classclf = np.array(classes)    
-index_of_pred = np.argmax(pred, axis=1)
+idx = np.argmax(pred, axis=1)
 print("가장 확률이 높은 정답 번호:", np.argmax(pred))
 print(classclf[np.argmax(pred, axis=1)])
+print(classclf[idx])
+
 
 
 
