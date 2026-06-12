@@ -1,0 +1,8 @@
+# 💡 Header 정보 추가: 브라우저에서 요청한 것처럼 User-Agent 설정
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+}
+
+# 💡 requests.get 호출 시 headers 파라미터 추가
+r = requests.get(url, headers=headers)  
+html = r.content  # 웹페이지 형태

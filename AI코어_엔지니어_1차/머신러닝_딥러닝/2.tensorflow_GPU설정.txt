@@ -1,0 +1,116 @@
+# wsl 실행
+cd ~ 명령으로 이동
+
+# 1. 가상환경 생성 및 활성화
+python3.10 -m venv tf_env
+source tf_env/bin/activate
+
+# 2. 최신 TensorFlow 및 CUDA 패키지 설치
+pip install --upgrade pip
+pip install tensorflow[and-cuda]
+
+
+(tf_env2) sckit@hancomssc:~$  python -c "import tensorflow as tf; print('\n' + '='*50); print('사용 가능한 GPU:', tf.config.list_physical_devices('GPU')); print('='*50)"  입력 후 확인
+
+아래 명령 입력
+
+cd $VIRTUAL_ENV/lib/python3.10/site-packages/nvidia/cudnn/lib && \
+for file in *.so.9; do ln -sf "$file" "${file%.9}.8"; done && \
+cd ~
+
+아래 명령 입력
+
+cd $VIRTUAL_ENV/lib/python3.10/site-packages/nvidia/cublas/lib && \
+for file in *.so.12; do ln -sf "$file" "${file%.12}.11"; done && \
+cd ~
+
+아래 명령 입력
+
+export LD_LIBRARY_PATH=$VIRTUAL_ENV/lib/python3.10/site-packages/nvidia/cuda_runtime/lib:$VIRTUAL_ENV/lib/python3.10/site-packages/nvidia/cudnn/lib:$VIRTUAL_ENV/lib/python3.10/site-packages/nvidia/cublas/lib:$VIRTUAL_ENV/lib/python3.10/site-packages/nvidia/curand/lib:$VIRTUAL_ENV/lib/python3.10/site-packages/nvidia/cusolver/lib:$VIRTUAL_ENV/lib/python3.10/site-packages/nvidia/cusparse/lib:$VIRTUAL_ENV/lib/python3.10/site-packages/nvidia/nccl/lib:$VIRTUAL_ENV/lib/python3.10/site-packages/nvidia/nvtx/lib:$LD_LIBRARY_PATH
+
+
+동작확인
+python -c "import tensorflow as tf; print('연산 테스트:', tf.matmul([[1.0, 2.0], [3.0, 4.0]], [[5.0, 6.0], [7.0, 8.0]]))"
+
+
+이 설정을 영구적으로 저장
+
+nano tf_env/bin/activate
+
+파일 맨 아래에 아래 내용 복사/붙여넣기:
+export LD_LIBRARY_PATH=$VIRTUAL_ENV/lib/python3.10/site-packages/nvidia/cuda_runtime/lib:$VIRTUAL_ENV/lib/python3.10/site-packages/nvidia/cudnn/lib:$VIRTUAL_ENV/lib/python3.10/site-packages/nvidia/cublas/lib:$VIRTUAL_ENV/lib/python3.10/site-packages/nvidia/curand/lib:$VIRTUAL_ENV/lib/python3.10/site-packages/nvidia/cusolver/lib:$VIRTUAL_ENV/lib/python3.10/site-packages/nvidia/cusparse/lib:$VIRTUAL_ENV/lib/python3.10/site-packages/nvidia/nccl/lib:$VIRTUAL_ENV/lib/python3.10/site-packages/nvidia/nvtx/lib:$LD_LIBRARY_PATH
+
+Ctrl + O, Enter, Ctrl + X로 저장하고 나옵니다.
+
+
+
+# 새로운 터미널을 열었을 때
+source tf_env/bin/activate
+
+
+
+동작확인
+python -c "import tensorflow as tf; print('연산 테스트:', tf.matmul([[1.0, 2.0], [3.0, 4.0]], [[5.0, 6.0], [7.0, 8.0]]))"
+
+
+********  파이참 인터프리터 환경세팅 **************
+1. 우분투에서 생성한 가상환경 디렉토리 선택 해서 오픈
+2. 인터프리터 추가
+   - 설정 --> 인터프리터 --> 인터프리터추가 --> WSL 선택
+     --> 기존항목선택 --> Python 경로 선택  --> 예)  WSL (Ubuntu): (/home/sckit/tf_env/bin/python3.10)
+
+
+파이참터미널
+cd ~
+source tf_env/bin/activate
+
+(tf_env) sckit@hancomssc:~$ echo $LD_LIBRARY_PATH
+/home/sckit/tf_env/lib/python3.10/site-packages/nvidia/cuda_runtime/lib:/home/sckit/tf_env/lib/python3.10/site-packages/nvidia/cudnn/lib:/home/sckit/tf_env/lib/python3.10/site-packages/nvidia/cublas/lib:/home/sckit/tf_env/lib/python3.10/site-packages/nvidia/curand/lib:/home/sckit/tf_env/lib/python3.10/site-packages/nvidia/cusolver/lib:/home/sckit/tf_env/lib/python3.10/site-packages/nvidia/cusparse/lib:/home/sckit/tf_env/lib/python3.10/site-packages/nvidia/nccl/lib:/home/sckit/tf_env/lib/python3.10/site-packages/nvidia/nvtx/lib:
+
+출력 내용을
+구성에 편집 메뉴에서
+
+파이참 환경 변수 창 열기:
+해당 실행 구성(Run Configuration)의 환경 변수 입력창 오른쪽 끝에 있는 문서 모양 아이콘을 클릭하여 전용 창을 띄웁니다.
+
+항목 수정 또는 추가:
+
+이미 LD_LIBRARY_PATH라는 이름이 목록에 있다면, 해당 행의 '값(Value)' 칸을 더블클릭합니다.
+
+기존에 적혀 있던 내용을 지우거나, 그 뒤에 콜론(:)을 입력한 후 복사한 내용을 붙여넣습니다.
+
+만약 목록에 없다면 좌측 상단의 + 버튼을 눌러 이름을 LD_LIBRARY_PATH로 만들고 값을 붙여넣습니다.
+
+확인 및 적용:
+
+하단의 확인(OK) 버튼을 눌러 창을 닫고, 실행 구성 창에서도 적용(Apply) 또는 확인을 누릅니다.
+
+LD_LIBRARY_PATH
+
+/home/sckit/tf_env/lib/python3.10/site-packages/nvidia/cuda_runtime/lib:/home/sckit/tf_env/lib/python3.10/site-packages/nvidia/cudnn/lib:/home/sckit/tf_env/lib/python3.10/site-packages/nvidia/cublas/lib:/home/sckit/tf_env/lib/python3.10/site-packages/nvidia/curand/lib:/home/sckit/tf_env/lib/python3.10/site-packages/nvidia/cusolver/lib:/home/sckit/tf_env/lib/python3.10/site-packages/nvidia/cusparse/lib:/home/sckit/tf_env/lib/python3.10/site-packages/nvidia/nccl/lib:/home/sckit/tf_env/lib/python3.10/site-packages/nvidia/nvtx/lib:
+
+
+*********   위 파일 단위가 아닌  프로젝트 단위 적용시 
+            ==>  파이참_CUDA_Path설정 디렉토리 내부 메뉴얼 참조
+**********
+
+*** tensorflow2.21 버전 호환 maplotlib
+==> pip install "matplotlib>=3.10.0"
+
+*** tensorflow2.21 버전 호환 scikit-learn
+==> pip install "scikit-learn>=1.7.0,<1.8.0"
+
+
+추가 팁: 원활한 학습을 위해
+학습 중에 InternalError: CUDA_ERROR_OUT_OF_MEMORY가 발생한다면, RTX 5080의 VRAM을 TensorFlow가 시작부터 100%
+다 점유하지 않도록 코드 상단에 아래 설정을 넣어주는 것이 좋습니다.
+
+
+import tensorflow as tf
+gpus = tf.config.list_physical_devices('GPU')
+if gpus:
+    try:
+        for gpu in gpus:
+            tf.config.experimental.set_memory_growth(gpu, True)
+    except RuntimeError as e:
+        print(e)

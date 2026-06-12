@@ -1,0 +1,25 @@
+
+# 윈도우 CMD 창 오픈
+wsl --install     <---  우분투 설치
+
+wsl 실행후
+우분투 내부에서
+cat /etc/os-release    <--- 우분투 설치 버전 확인
+
+
+# 설치 가능한 배포판 목록 확인
+wsl --list --online
+
+# 특정 버전 설치 (예: 24.04)
+wsl --install -d Ubuntu-24.04
+
+
+# 파이썬 설치
+sudo apt update
+sudo apt install software-properties-common -y
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt update
+
+sudo apt install python3.10 python3.10-venv python3.10-dev
+
+python3.10 --version
