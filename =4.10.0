@@ -1,0 +1,7 @@
+Collecting opencv-python
+  Downloading opencv_python-4.13.0.92-cp37-abi3-manylinux_2_28_x86_64.whl.metadata (19 kB)
+Requirement already satisfied: numpy>=2 in ./lib/python3.10/site-packages (from opencv-python) (2.2.6)
+Downloading opencv_python-4.13.0.92-cp37-abi3-manylinux_2_28_x86_64.whl (72.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 72.9/72.9 MB 70.0 MB/s  0:00:01
+Installing collected packages: opencv-python
+Successfully installed opencv-python-4.13.0.92
