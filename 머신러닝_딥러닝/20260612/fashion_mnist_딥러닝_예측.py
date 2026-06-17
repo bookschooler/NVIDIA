@@ -19,11 +19,10 @@ print(len(train_x), len(test_x))
 
 
 # 소숫점 이하 3자리까지 출력
-np.set_printoptions(precision=3, suppress=True)
+np.set_printoptions(threshold=np.inf, precision=3, suppress=True)
 
 # 1. 최고 성능 모델 불러오기
 from tensorflow.keras.models import load_model
-import joblib
 
 best_model = load_model('/home/sophie/tf_env/fashioin_bestmodel.keras') 
 best_model.summary()
