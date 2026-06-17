@@ -39,3 +39,4 @@ print('test acc:', gnb_model.score(test_x, test_y))    # 모델 성능 평가
 
 
 
+
