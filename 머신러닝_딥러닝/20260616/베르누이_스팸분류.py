@@ -106,7 +106,3 @@ print(confusion_matrix(kaggle_y, pred2))
 # train_x = cv.fit_transform(spamdf['Message']).toarray()
 
 # print(len( cv.get_feature_names_out()))
-# 
-
-
-

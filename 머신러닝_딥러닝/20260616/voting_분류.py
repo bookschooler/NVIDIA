@@ -56,3 +56,5 @@ softvoting_model = VotingClassifier(estimators=[
 
 softvoting_model.fit(train_x,train_y)
 print('softvoting acc: ', softvoting_model.score(test_x, test_y))    # 0.91
+
+
