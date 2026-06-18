@@ -143,7 +143,7 @@ for word in ex_review.split(' '):
 # 훈련,테스트데이터와동일하게길이를 100으로패딩(타임스템프크기)
 # 예측
 
-pad_new = pad_sequences( [encoded], maxlen= 100 ) # 타임스템프 형성을 위한 2차원 배열 형태 전달
+pad_new = pad_sequences( [encoded], maxlen= 100 ) # 타임스템프형성을 위한2차원배열형태전달
 
 print(pad_new)
 score = float( model.predict(pad_new) )
@@ -152,6 +152,3 @@ if(score > 0.5):
         print("{:.2f}% 확률로 긍정 리뷰".format(score*100))
 else:
         print("{:.2f}% 확률로 부정 리뷰".format((1-score) * 100))
-
-
-
